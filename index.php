@@ -28,21 +28,16 @@ function initialiserEmployes(): array {
 
 // recuperation des departement dans un tableau 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/recuperation
 function recupDepartementsUniques(array $employes): array {
-    $departement = [];
+    $departements = [];
     foreach ($employes as $employe) {
-        if (isset($employe['departement'])) {
-            $dept = $employe['departement'];
-            if (!in_array($dept, $departement, true)) {
-                $departement[] = $dept;
-            }
+        $code = $employe['departement']['code'];
+
+        if (!isset($departements[$code])) {
+            $departements[$code] = $employe['departement'];
         }
     }
-    return $departement;
+    return array_values($departements);
 }
 
 $employes = initialiserEmployes();
